@@ -1,0 +1,52 @@
+{
+  "schema": "gasp-source-settings-v1",
+  "python": "3.13",
+  "methods": ["R-NWTT", "EMSO", "MSOA", "SPS", "GASP", "SMP-GAS"],
+  "display_names": {"SMP-GAS": "SMP"},
+  "seeds": {"start": 2000, "count": 100},
+  "network": {"domains": 5, "central_switches": 1, "link_mbps": 100, "tick_ns": 10},
+  "traffic": {
+    "periods_ms": [10, 20, 50, 100],
+    "deadlines_us": [100, 300, 500, 700],
+    "payload_integer_bytes": [0, 8],
+    "record_header_bytes": 8,
+    "sampling": "uniform within each specified set or integer range",
+    "member_attributes_shared": ["period", "deadline", "payload"],
+    "priority": "unique seeded permutation of 11-bit CAN identifiers"
+  },
+  "packing": {
+    "gasp_sps_record_limit_bytes": 1500,
+    "emso_record_limit_bytes": 750,
+    "msoa_duration_divisors": [4, 2, 8],
+    "minimum_mac_frame_bytes": 64,
+    "guard_us": 123.36,
+    "guard_ticks": 12336,
+    "ifg_included_in_duration": true,
+    "idle_guard_included_in_occupancy": false
+  },
+  "scale": {
+    "requirements_start": 50,
+    "requirements_end": 600,
+    "step": 50,
+    "class_weights": {"D": 8, "C": 4, "B": 6, "A": 5, "QM": 4}
+  },
+  "noncritical_load": {
+    "critical_requirements": [50, 150, 300],
+    "parent_class": "D",
+    "noncritical_messages_start": 50,
+    "noncritical_messages_end": 600,
+    "step": 50,
+    "pool_critical_requirements": 300,
+    "pool_noncritical_messages": 600,
+    "nested_prefixes_per_seed": true
+  },
+  "fpga": {
+    "platform": "ZCU104",
+    "vivado": "2025.2",
+    "requirements": [200, 300, 400, 500, 600],
+    "seed": 2000,
+    "hyperperiods_per_configuration": 100,
+    "duration_seconds": 10,
+    "links": "internal byte-bearing interfaces timed at 100 Mbps"
+  }
+}

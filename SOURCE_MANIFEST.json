@@ -1,0 +1,161 @@
+{
+  "schema": "gasp-source-manifest-v1",
+  "scope": "GASP method implementation and experimental settings; full experimental scripts deferred",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 186,
+      "sha256": "978c5681563dd07eae120af9a4996799b130e5c779460cfb2e0609582c8532f6"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2005,
+      "sha256": "4c4941f8700d11eed231f390f9115e6fd08162406db985e652cc2f8851c0abb3"
+    },
+    {
+      "path": "docs/ALGORITHM.md",
+      "bytes": 3011,
+      "sha256": "8c90e74b18a834757061bd2fd0b634964a41bbe70773628ea0f8ac3f865ed644"
+    },
+    {
+      "path": "docs/EXPERIMENTAL_SETTINGS.md",
+      "bytes": 4079,
+      "sha256": "7ee93e9f875e3510a65ee2a1fc275d4c77100f61c6bcbf5d800377f4327420a0"
+    },
+    {
+      "path": "docs/FPGA.md",
+      "bytes": 1863,
+      "sha256": "3402a18cb8847448d64e11f6400d79ef6652741b699e4780786cc0bac150688d"
+    },
+    {
+      "path": "docs/REFERENCES.md",
+      "bytes": 1121,
+      "sha256": "bf645389ba94001a64b5ca8801198e47ea59afd2e968223676b4a088dffae91f"
+    },
+    {
+      "path": "docs/RELEASE.md",
+      "bytes": 949,
+      "sha256": "2ed8e0e94adaa09de0303efad5f43f2a0ed1b1dccd5a6ac53a9cb5ecb077bb7c"
+    },
+    {
+      "path": "examples/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "examples/minimal.py",
+      "bytes": 538,
+      "sha256": "41d311b0eff4922a9867784a6d1472cc0be5d1f71dd22c37fdcaa11852ffc9ed"
+    },
+    {
+      "path": "gasp/__init__.py",
+      "bytes": 220,
+      "sha256": "13937553b36bde66d268aef1d9a6946a84941970b8efe638a0015c3e99f49c79"
+    },
+    {
+      "path": "gasp/api.py",
+      "bytes": 2014,
+      "sha256": "b7d09335a418a253367883b64ac6a06fdd0fb756d899fae51f38c9307c39c737"
+    },
+    {
+      "path": "gasp/scheduler.py",
+      "bytes": 11294,
+      "sha256": "b88aae7d9bce11999ccbce07ec08ab587b139a5675a7ed7b12ce73ce0fdff5d2"
+    },
+    {
+      "path": "gasp/serialization.py",
+      "bytes": 295,
+      "sha256": "eadb9eec735e42e21c0d7097d258642d78504444966c9ee0ceaeb5a88177ad73"
+    },
+    {
+      "path": "hardware/common/rtl/network_types.vhd",
+      "bytes": 1354,
+      "sha256": "cbd3aa6d54fb366c36f106078b26d8103c213d8188f5a878e788973c2fe176c0"
+    },
+    {
+      "path": "hardware/common/split_core/frame_buffer.vhd",
+      "bytes": 771,
+      "sha256": "aeec8160682115e1068a29baa0ab3cdb7954c18bf047444a75babedac5923c43"
+    },
+    {
+      "path": "hardware/fpga/constraints/debug_tdi.xdc",
+      "bytes": 1306,
+      "sha256": "0ef2b1f223a7d1bc80c292effd08a906192edcfac1e6f9c1d57d5e6d4fcdcc34"
+    },
+    {
+      "path": "hardware/fpga/constraints/zcu104.xdc",
+      "bytes": 493,
+      "sha256": "72f61d393e42b1ce70dafd664c375ab98a0485e6a273e57441451213353180e7"
+    },
+    {
+      "path": "hardware/fpga/rtl/board_executor_axi.vhd",
+      "bytes": 22822,
+      "sha256": "3428ca1ecc2b5be86af62e206af0aecb4cc1f2f91e25a18d759e173881d75647"
+    },
+    {
+      "path": "hardware/fpga/rtl/board_gateway.vhd",
+      "bytes": 16222,
+      "sha256": "2d049990344bd7527d06d194d6eae76fb0d07a1728bc457dd3058788a8b79c87"
+    },
+    {
+      "path": "hardware/fpga/rtl/board_network.vhd",
+      "bytes": 5069,
+      "sha256": "1c94b98f48875d25582b0b2a9489870cd03dc47d0e18375aae53e9f216ee3cb2"
+    },
+    {
+      "path": "hardware/fpga/rtl/board_switch.vhd",
+      "bytes": 20823,
+      "sha256": "b046043d755e205b5847526ce549ba7f4984e5fb12cf2012189a88e804053cfd"
+    },
+    {
+      "path": "hardware/fpga/rtl/board_types.vhd",
+      "bytes": 332,
+      "sha256": "86d387b85ec6533e66e858ec457e47cc63ae29b8cd91d539d73f57d8bd8cbb1e"
+    },
+    {
+      "path": "hardware/fpga/rtl/gasp_metric_monitor.vhd",
+      "bytes": 37969,
+      "sha256": "e57fcee0ff33e7f93471dde162336ce87ca7b648ae0050804d06b46b23674355"
+    },
+    {
+      "path": "hardware/fpga/vivado/apply_debug_tdi.tcl",
+      "bytes": 359,
+      "sha256": "16eb9f9d15174dfd446cbe357715da7d9b38645134011e9a7f5f8dc21cde528c"
+    },
+    {
+      "path": "hardware/fpga/vivado/board_executor_bd.vhd",
+      "bytes": 4047,
+      "sha256": "9939b5e6ea8c38ba7afcd9f833fa9b49cbbe5c6f000971843f9c567875fd6558"
+    },
+    {
+      "path": "hardware/fpga/vivado/build.tcl",
+      "bytes": 7552,
+      "sha256": "8ea171e82279c26a76a6575b2b9fa0bcf155bbc052a42c0bd8c53423388cf8c8"
+    },
+    {
+      "path": "hardware/fpga/vivado/create_project.tcl",
+      "bytes": 5119,
+      "sha256": "b297c45d0dbc0a45fee587fd3a85ca331382b84ea0273eb2fcd23a47553295e9"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 324,
+      "sha256": "5771d9b836c1c7d3b576e1d7736e9b13d203cb110f5d9de7afb3c622af2be828"
+    },
+    {
+      "path": "scripts/verify_sources.py",
+      "bytes": 1624,
+      "sha256": "22318142fdb7c74ee05cef3043d9b6dc2e514aab626c8be6f6b544e6d42e660f"
+    },
+    {
+      "path": "settings/asil_configurations.json",
+      "bytes": 429,
+      "sha256": "6ee82a2d92350a4316fb3d11e57780a104e1e3ac8e67b1609743e12b3285aa6e"
+    },
+    {
+      "path": "settings/experiments.json",
+      "bytes": 1704,
+      "sha256": "90735125221257b3b9de4a02f62729b464ba321862aa61e6d346c89db7ac9956"
+    }
+  ]
+}

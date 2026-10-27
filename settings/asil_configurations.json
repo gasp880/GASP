@@ -1,0 +1,40 @@
+{
+  "ASIL-D": [
+    [
+      "ASIL-C",
+      "ASIL-A"
+    ],
+    [
+      "ASIL-B",
+      "ASIL-B"
+    ],
+    [
+      "ASIL-B",
+      "ASIL-A",
+      "ASIL-A"
+    ],
+    [
+      "ASIL-A",
+      "ASIL-A",
+      "ASIL-A",
+      "ASIL-A"
+    ]
+  ],
+  "ASIL-C": [
+    [
+      "ASIL-B",
+      "ASIL-A"
+    ],
+    [
+      "ASIL-A",
+      "ASIL-A",
+      "ASIL-A"
+    ]
+  ],
+  "ASIL-B": [
+    [
+      "ASIL-A",
+      "ASIL-A"
+    ]
+  ]
+}
