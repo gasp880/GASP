@@ -36,6 +36,13 @@ within a condition and seed. Software evaluation computes static periodic
 schedules. The parameter file is descriptive; batch execution, comparison
 implementations and analysis scripts are not included in this release.
 
+The primary comparison uses R-NWTT, S-EMSO, S-MSOA, SPS, SMP and GASP.
+S-EMSO/S-MSOA add same-group frame separation at all aggregation stages of
+EMSO/MSOA while retaining their other packing, scheduling and message-level
+admission rules. Original EMSO/MSOA are separate diagnostic comparisons.
+`settings/experiments.json` records both profiles explicitly. GASP/SPS compare
+additional periodic occupancy using exact rational arithmetic.
+
 ## Evaluation quantities
 
 | Paper quantity | Generated field / computation |

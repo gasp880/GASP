@@ -1,7 +1,7 @@
 # Release scope
 
 The current public release includes the GASP scheduling method, a small
-hand-written API example, experiment-setting descriptions, and FPGA
+hand-written API example, deterministic method tests, experiment-setting descriptions, and FPGA
 implementation sources. Full experimental scripts will be released upon
 paper acceptance.
 

@@ -9,18 +9,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 2005,
-      "sha256": "4c4941f8700d11eed231f390f9115e6fd08162406db985e652cc2f8851c0abb3"
+      "bytes": 2329,
+      "sha256": "4e2071607036ad38d8a2ee4e5a26806d415e4a11eec04b8e7a6e9dfb10f93133"
     },
     {
       "path": "docs/ALGORITHM.md",
-      "bytes": 3011,
-      "sha256": "8c90e74b18a834757061bd2fd0b634964a41bbe70773628ea0f8ac3f865ed644"
+      "bytes": 3598,
+      "sha256": "254ed1b5a9663414b919f76c80e814aeeef773ba9ed6be8f0ccf738f33565fce"
     },
     {
       "path": "docs/EXPERIMENTAL_SETTINGS.md",
-      "bytes": 4079,
-      "sha256": "7ee93e9f875e3510a65ee2a1fc275d4c77100f61c6bcbf5d800377f4327420a0"
+      "bytes": 4517,
+      "sha256": "bd9d21b4cb975c4bcd2af79d38b06eb89f112c763880acba7c3d86578373ffa4"
     },
     {
       "path": "docs/FPGA.md",
@@ -34,8 +34,8 @@
     },
     {
       "path": "docs/RELEASE.md",
-      "bytes": 949,
-      "sha256": "2ed8e0e94adaa09de0303efad5f43f2a0ed1b1dccd5a6ac53a9cb5ecb077bb7c"
+      "bytes": 977,
+      "sha256": "9c23728e44d9a1cb01ceea36faa0809fd1588754da05b94054cd0e8bec2b9251"
     },
     {
       "path": "examples/__init__.py",
@@ -54,13 +54,13 @@
     },
     {
       "path": "gasp/api.py",
-      "bytes": 2014,
-      "sha256": "b7d09335a418a253367883b64ac6a06fdd0fb756d899fae51f38c9307c39c737"
+      "bytes": 5135,
+      "sha256": "48305d13eed70f3d835340de4c833049cf6b5d2effc4bed0a069a483451611a8"
     },
     {
       "path": "gasp/scheduler.py",
-      "bytes": 11294,
-      "sha256": "b88aae7d9bce11999ccbce07ec08ab587b139a5675a7ed7b12ce73ce0fdff5d2"
+      "bytes": 12389,
+      "sha256": "fee2beb3afcb65e610a932c126596ad7b03726123050a820925cffa20fbbafc7"
     },
     {
       "path": "gasp/serialization.py",
@@ -154,8 +154,13 @@
     },
     {
       "path": "settings/experiments.json",
-      "bytes": 1704,
-      "sha256": "90735125221257b3b9de4a02f62729b464ba321862aa61e6d346c89db7ac9956"
+      "bytes": 2528,
+      "sha256": "d8cb43dd3d2e09eb18fcb00ca38de83421d7fe91bac53c18e024236126b910f2"
+    },
+    {
+      "path": "tests/test_scheduler.py",
+      "bytes": 9594,
+      "sha256": "d8b60a951cbbcbb53426e64edd535f6027d8391c36e30b02d4c599da7b5b6c19"
     }
   ]
 }

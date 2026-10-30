@@ -1,8 +1,25 @@
 {
-  "schema": "gasp-source-settings-v1",
+  "schema": "gasp-source-settings-v2",
   "python": "3.13",
-  "methods": ["R-NWTT", "EMSO", "MSOA", "SPS", "GASP", "SMP-GAS"],
+  "methods": ["R-NWTT", "S-EMSO", "S-MSOA", "SPS", "SMP-GAS", "GASP"],
+  "diagnostic_original_methods": ["EMSO", "MSOA"],
   "display_names": {"SMP-GAS": "SMP"},
+  "separated_baseline_profiles": {
+    "S-EMSO": {
+      "base_method": "EMSO",
+      "same_group_frame_separation": true,
+      "applies_at": ["initial aggregation", "cross-period merging", "split children"],
+      "whole_group_commitment": false,
+      "retained": ["message order", "750 B record limit", "offset search", "local splitting"]
+    },
+    "S-MSOA": {
+      "base_method": "MSOA",
+      "same_group_frame_separation": true,
+      "applies_at": ["initial aggregation", "cross-period merging", "failed-frame regrouping"],
+      "whole_group_commitment": false,
+      "retained": ["duration targets 1/4 1/2 1/8", "critical-first order", "offset search", "critical repair restart"]
+    }
+  },
   "seeds": {"start": 2000, "count": 100},
   "network": {"domains": 5, "central_switches": 1, "link_mbps": 100, "tick_ns": 10},
   "traffic": {
@@ -15,6 +32,7 @@
     "priority": "unique seeded permutation of 11-bit CAN identifiers"
   },
   "packing": {
+    "gasp_sps_increment_comparison": "exact rational arithmetic",
     "gasp_sps_record_limit_bytes": 1500,
     "emso_record_limit_bytes": 750,
     "msoa_duration_divisors": [4, 2, 8],

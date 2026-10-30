@@ -7,16 +7,17 @@ Each `Flow` contains:
 
 | Field | Meaning |
 | --- | --- |
-| `uid` | Unique message identifier |
+| `uid` | Nonempty unique string message identifier |
 | `requirement` | Fixed group identifier; use a separate identifier for each non-critical message |
 | `parent`, `asil` | Original requirement class and member class; `QM` identifies non-critical messages internally |
-| `member` | Distinct member index within a group |
+| `member` | Distinct nonnegative integer member index within a group |
 | `source`, `destination` | Domain indices, 0 through 4 |
 | `period`, `deadline` | Positive integer 10 ns ticks |
 | `payload` | CAN payload length, 0 through 8 bytes |
-| `priority` | CAN priority value; lower values rank higher |
+| `priority` | Integer CAN identifier, 0 through 2047; lower values rank higher |
 
-Members of an input group share period, deadline and payload length. The
+Members of an input group share parent class, period, deadline, payload length
+and destination. Group identifiers are nonnegative integers. The
 input sequence defines the first stored member used for group-priority ties.
 The optional internal `success_sets` field is overwritten in the scheduling
 view so that a critical group always requires all its supplied members.
@@ -25,6 +26,12 @@ view so that a critical group always requires all its supplied members.
 pairs. Each packet contains its admitted `flows`; offsets use 10 ns ticks.
 The fixed link rate is 100 Mbps, equivalent to one bit per tick. The method
 does not select or alter an ASIL decomposition configuration.
+`Packet.duration()` returns 10 ns ticks by default. Invalid inputs raise
+`ValueError`, including out-of-range fields, duplicate identifiers and
+inconsistent group attributes. Critical group identifiers and non-critical
+message identifiers must be distinct. Timing and group-result checks remain
+active under `python -O`. Inputs specify the decomposition; the API does not
+certify its ISO 26262 validity or element independence.
 
 ## Admission and packing
 
@@ -48,7 +55,7 @@ deadline. Modular conflict checks use period greatest common divisors.
 
 Among feasible options, a new frame adds `C_new/T_new` periodic occupancy;
 a merge adds `C_merged/T_merged - C_old/T_old`. The smallest increment is
-selected. Equal increments favor earlier two-hop completion, then preserve
+selected using exact rational arithmetic. Equal increments favor earlier two-hop completion, then preserve
 option construction order. Offset search returns the earliest feasible tick.
 Non-critical messages use remaining slots in deadline/priority order.
 

@@ -15,6 +15,7 @@ gasp/       GASP algorithm, message/frame types, wire timing and method API
 settings/   Network, traffic, ASIL configuration and evaluation parameters
 hardware/   FPGA RTL, constraints and Vivado project construction
 examples/   One small hand-written method example
+tests/      Deterministic method and input-validation checks
 docs/       Method and experimental-setting descriptions
 scripts/    Distributed source-integrity check
 ```
@@ -25,6 +26,8 @@ Python 3.13 and its standard library are sufficient. From the repository root:
 
 ```bash
 python3 scripts/verify_sources.py
+python3 -m unittest discover -s tests -v
+python3 -O -m unittest discover -s tests -v
 python3 -m examples.minimal
 ```
 
@@ -32,6 +35,9 @@ The example uses a small hand-written input and does not reproduce a paper
 experiment. To schedule your own messages, call `gasp.schedule(messages)`.
 Time fields and returned offsets use integer 10 ns ticks; payload lengths use
 bytes. See [the API and algorithm notes](docs/ALGORITHM.md).
+`Packet.duration()` also returns 10 ns ticks by default. The tests use small
+hand-written inputs and synthetic certificates; they contain no paper results
+or experiment drivers.
 
 Optional installation: `python3 -m pip install -e .`.
 

@@ -7,6 +7,7 @@ paper's all-member admission, harmonic aggregation and padded wire timing.
 from __future__ import annotations
 from collections import defaultdict
 from dataclasses import dataclass
+from fractions import Fraction
 import math
 from typing import Sequence
 from gasp.serialization import wire_bytes
@@ -65,7 +66,7 @@ class Packet:
     def wire_bytes(self):
         return wire_bytes(self.payload)
 
-    def duration(self, rate=100):
+    def duration(self, rate=1):
         return math.ceil(8 * self.wire_bytes / rate)
 
 
@@ -88,7 +89,7 @@ class GuardPolicy:
     It is independent of inter-frame guards; default zero preserves history.
     """
 
-    width: int = 120
+    width: int = 12336
     mode: str = "gate"
     release_floor: int = 0
 
@@ -121,7 +122,7 @@ def _gap_after(a: Packet, b: Packet, guard, rate):
     )
 
 
-def overlaps(a: Packet, x: int, b: Packet, y: int, rate=100, guard=0) -> bool:
+def overlaps(a: Packet, x: int, b: Packet, y: int, rate=1, guard=0) -> bool:
     """Exact infinite-period conflict criterion for half-open intervals."""
     ca, cb = a.duration(rate), b.duration(rate)
     ab, ba = _gap_after(a, b, guard, rate), _gap_after(b, a, guard, rate)
@@ -135,7 +136,7 @@ def overlaps(a: Packet, x: int, b: Packet, y: int, rate=100, guard=0) -> bool:
     return False
 
 
-def offset_mask(packet: Packet, schedule: Schedule, rate=100, guard=0) -> int:
+def offset_mask(packet: Packet, schedule: Schedule, rate=1, guard=0) -> int:
     """All feasible integer-tick offsets, computed as periodic forbidden intervals."""
     c = packet.duration(rate)
     limit = min(packet.period - 1, packet.deadline - 2 * c)
@@ -171,37 +172,55 @@ def offset_mask(packet: Packet, schedule: Schedule, rate=100, guard=0) -> int:
     return mask
 
 
-def find_offset(packet, schedule, rate=100, guard=0):
+def find_offset(packet, schedule, rate=1, guard=0):
     bits = offset_mask(packet, schedule, rate, guard)
     return (bits & -bits).bit_length() - 1 if bits else None
 
 
-def validate(schedule: Schedule, workload: Sequence[Flow], rate=100, guard=0):
+def validate(schedule: Schedule, workload: Sequence[Flow], rate=1, guard=0):
     """Independent pairwise modular validator; raises on any invalid certificate."""
+    if rate <= 0:
+        raise ValueError("link rate must be positive")
     known = {f.uid: f for f in workload}
+    if len(known) != len(workload):
+        raise ValueError("duplicate workload message identifiers")
     seen = set()
     for j, (p, off) in enumerate(schedule):
-        assert p.flows and p.payload <= 1500
-        assert len({(f.source, f.destination) for f in p.flows}) == 1
+        if not p.flows or p.payload > 1500:
+            raise ValueError("empty frame or record limit exceeded")
+        if len({(f.source, f.destination) for f in p.flows}) != 1:
+            raise ValueError("frame members have different routes")
         # Explicit policies use Packet.critical for mixed PDUs; retain the
         # historical homogeneous-only contract for legacy integer guards.
         if not isinstance(guard, GuardPolicy) and guard:
-            assert len({f.critical for f in p.flows}) == 1
-        assert p.route[0] != p.route[1]
-        assert all(f.period > 0 and 0 <= f.payload <= 8 for f in p.flows)
-        assert 0 <= off < p.period and off + 2 * p.duration(rate) <= p.deadline
+            if len({f.critical for f in p.flows}) != 1:
+                raise ValueError("mixed traffic requires an explicit guard policy")
+        if p.route[0] == p.route[1]:
+            raise ValueError("a frame must cross domains")
+        if not all(isinstance(f.period, int) and not isinstance(f.period, bool)
+                   and f.period > 0 and isinstance(f.payload, int)
+                   and not isinstance(f.payload, bool) and 0 <= f.payload <= 8
+                   for f in p.flows):
+            raise ValueError("invalid message period or CAN payload")
+        if not isinstance(off, int) or isinstance(off, bool):
+            raise ValueError("offset must be an integer time tick")
+        if not (0 <= off < p.period and off + 2 * p.duration(rate) <= p.deadline):
+            raise ValueError("invalid offset or missed deadline")
         if isinstance(guard, GuardPolicy) and p.critical:
-            assert (
-                off >= guard.release_floor
-            ), "critical offset precedes release guard floor"
-        assert p.duration(rate) <= p.period
+            if off < guard.release_floor:
+                raise ValueError("critical offset precedes release guard floor")
+        if p.duration(rate) > p.period:
+            raise ValueError("instances of the same frame overlap")
         if isinstance(guard, GuardPolicy) and guard.mode == "exclusive" and p.critical:
-            assert p.duration(rate) + guard.width <= p.period
+            if p.duration(rate) + guard.width > p.period:
+                raise ValueError("frame and exclusive guard exceed the period")
         for f in p.flows:
-            assert f.uid in known and known[f.uid] == f and f.uid not in seen
+            if f.uid not in known or known[f.uid] != f or f.uid in seen:
+                raise ValueError("unknown, altered or duplicate message")
             seen.add(f.uid)
         for q, old in schedule[:j]:
-            assert not overlaps(p, off, q, old, rate, guard)
+            if overlaps(p, off, q, old, rate, guard):
+                raise ValueError("periodic frames overlap or violate a guard")
     return seen
 
 
@@ -219,7 +238,7 @@ def add_flow(flow, schedule, rate, guard, aggregate, harmonic=False, payload_cap
     if off is not None:
         options.append(
             (
-                singleton.duration(rate) / singleton.period,
+                Fraction(singleton.duration(rate), singleton.period),
                 off + 2 * singleton.duration(rate),
                 schedule + [(singleton, off)],
             )
@@ -247,10 +266,8 @@ def add_flow(flow, schedule, rate, guard, aggregate, harmonic=False, payload_cap
                 options.append(
                     (
                         (
-                            (joined.duration(rate) - p.duration(rate)) / p.period
-                            if joined.period == p.period
-                            else joined.duration(rate) / joined.period
-                            - p.duration(rate) / p.period
+                            Fraction(joined.duration(rate), joined.period)
+                            - Fraction(p.duration(rate), p.period)
                         ),
                         offset + 2 * joined.duration(rate),
                         remainder + [(joined, offset)],
@@ -261,7 +278,7 @@ def add_flow(flow, schedule, rate, guard, aggregate, harmonic=False, payload_cap
 
 def group_schedule(
     flows,
-    rate=100,
+    rate=1,
     guard=0,
     aggregate=True,
     harmonic=False,
@@ -282,7 +299,7 @@ def group_schedule(
         options = []
         for required in members[0].success_sets:
             trial = schedule[:]
-            incremental_cost, completion = 0.0, 0
+            incremental_cost, completion = Fraction(0), 0
             insertion_order = (
                 sorted(required, key=lambda j: by_member[j].priority)
                 if member_order == "priority"
