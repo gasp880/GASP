@@ -13,6 +13,11 @@ sampled experiment configurations, captured data and previously generated
 experimental results. The constructed manuscript example computes its own
 small illustrative schedule when run.
 
+The example visualization and its versioned preview cover only the constructed
+manuscript illustration. Optional plotting support produces its frame-content
+and timing figure; no sampled experimental dataset or performance plot is
+included.
+
 [PAPER_VERSION.md](PAPER_VERSION.md) fixes the method commit and code hashes.
 [FPGA.md](FPGA.md) documents the RTL capacities and API-to-hardware field
 mapping; host loading and experimental replay scripts remain outside this

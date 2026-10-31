@@ -4,18 +4,18 @@
   "files": [
     {
       "path": ".github/workflows/paper-example.yml",
-      "bytes": 664,
-      "sha256": "7e8080c4b7acd6c80853ee4bdba9598847f79453ae9fa9fd8b252fb4ea9a2178"
+      "bytes": 2189,
+      "sha256": "f5cf6952ced4d7c3ecf72745499ca26d0ae8104e675563ad37e491453809a068"
     },
     {
       "path": ".gitignore",
-      "bytes": 186,
-      "sha256": "978c5681563dd07eae120af9a4996799b130e5c779460cfb2e0609582c8532f6"
+      "bytes": 243,
+      "sha256": "be74c63db067759ac627d8c98a88aa0d36834cae0d1360c2bb6c865e508c70ae"
     },
     {
       "path": "README.md",
-      "bytes": 2957,
-      "sha256": "b6c2506ed52b306de1bc48df34806812e3ead9523215859ef0f5e738bafefaf2"
+      "bytes": 3408,
+      "sha256": "5d3d294f9f3b6d33b7c8fa6febecae16d0d992adf68aa1ae9501d96e1960be85"
     },
     {
       "path": "docs/ALGORITHM.md",
@@ -34,8 +34,8 @@
     },
     {
       "path": "docs/PAPER_EXAMPLE.md",
-      "bytes": 2306,
-      "sha256": "3f0fcac742255cb1ee4973bdfc7eb917277810deaf52a80b2e1bf30d1e17218b"
+      "bytes": 3346,
+      "sha256": "0f7e4afa1de867e376e357ea7c1d50a99d4882c27d49f6bf27fa2e0d1439acef"
     },
     {
       "path": "docs/PAPER_VERSION.md",
@@ -49,8 +49,13 @@
     },
     {
       "path": "docs/RELEASE.md",
-      "bytes": 1389,
-      "sha256": "1ff11ad0da2ec05d67e269c85f63170a00fc2df2a622418c2de997bd87ff7a1e"
+      "bytes": 1631,
+      "sha256": "617021c87f0b27bbbcaef470afbedc95ed82bbc6e8ae2266e1cffa9af389f6ca"
+    },
+    {
+      "path": "docs/assets/paper-example-schedule.png",
+      "bytes": 238599,
+      "sha256": "609e4d467ced74c01cab7f6f709902cacda319c39b174a70a0521279c61557a0"
     },
     {
       "path": "examples/__init__.py",
@@ -66,6 +71,16 @@
       "path": "examples/paper_example.py",
       "bytes": 6907,
       "sha256": "b881f0b4fcf287fcaf1e5785a8f9ca57bf5836f908a29b7637ae7192ee9ee34d"
+    },
+    {
+      "path": "examples/requirements-visualization.txt",
+      "bytes": 19,
+      "sha256": "8be425bda43e02a42885b61c6f4acd03fea278bffc9428ddd982930d9a58855b"
+    },
+    {
+      "path": "examples/visualize_paper_example.py",
+      "bytes": 6298,
+      "sha256": "11a1caee1b4f7fb4af7659855c112bc913eae6543c00d2a3d03a1508e18f7354"
     },
     {
       "path": "gasp/__init__.py",

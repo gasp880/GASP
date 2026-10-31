@@ -22,3 +22,5 @@ runs/
 *.tar.gz
 *.pdf
 *.png
+!docs/assets/paper-example-schedule.png
+example-figures/

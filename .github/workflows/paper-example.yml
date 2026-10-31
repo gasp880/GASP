@@ -27,3 +27,34 @@ jobs:
       - name: Run paper example
         shell: bash
         run: python3 -m examples.paper_example | tee "$GITHUB_STEP_SUMMARY"
+      - name: Install plotting support
+        run: python3 -m pip install -r examples/requirements-visualization.txt
+      - name: Generate schedule figures
+        run: python3 -m examples.visualize_paper_example --output-dir "$RUNNER_TEMP/paper-example-figures"
+      - name: Upload schedule figures
+        id: figures
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-example-figures
+          path: ${{ runner.temp }}/paper-example-figures/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Add visualization to Summary
+        env:
+          FIGURE_ARTIFACT_URL: ${{ steps.figures.outputs.artifact-url }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          preview = (
+              "https://raw.githubusercontent.com/"
+              + os.environ["GITHUB_REPOSITORY"] + "/"
+              + os.environ["GITHUB_SHA"]
+              + "/docs/assets/paper-example-schedule.png"
+          )
+          with Path(os.environ["GITHUB_STEP_SUMMARY"]).open("a") as summary:
+              summary.write("\n## Schedule visualization\n\n")
+              summary.write(f"![Computed paper-example schedule]({preview})\n\n")
+              summary.write(f"[Download figures generated in this run]({os.environ['FIGURE_ARTIFACT_URL']}) (PNG, SVG, PDF and JSON).\n\n")
+              summary.write("The inline preview shows the same verified hand-written example; the download contains this run's generated files.\n")
+          PY

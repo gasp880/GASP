@@ -34,6 +34,18 @@ are sufficient. See the [input and running guide](docs/PAPER_EXAMPLE.md).
 The same example runs on [GitHub Actions](https://github.com/gasp880/GASP/actions/workflows/paper-example.yml).
 Open a completed **Paper example** run to view its output in the Summary.
 
+![Paper example: frame contents and two-hop schedule](docs/assets/paper-example-schedule.png)
+
+To generate this visualization locally, install the optional plotting support:
+
+```bash
+python3 -m pip install -r examples/requirements-visualization.txt
+python3 -m examples.visualize_paper_example
+```
+
+The figures are generated from a fresh, verified GASP schedule. Actions also
+provides PNG, SVG, PDF and JSON downloads under **paper-example-figures**.
+
 ## Use the method
 
 Python 3.13 and its standard library are sufficient. From the repository root:

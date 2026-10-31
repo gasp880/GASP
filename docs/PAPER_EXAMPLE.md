@@ -19,6 +19,19 @@ hop reservations, deadlines, member assignments and whole-group admission.
 Built-in checks compare these decisions with the numerical example in the
 manuscript and exit with an error if they differ.
 
+To plot the frame contents and reservations on each uplink and the shared
+downlink, install the optional plotting dependency and run:
+
+```bash
+python3 -m pip install -r examples/requirements-visualization.txt
+python3 -m examples.visualize_paper_example --output-dir example-figures
+```
+
+This computes the schedule again and exports PNG, editable SVG, PDF and a
+JSON record of the plotted frame assignments and timings. The plot shows the
+first release of the 40 ms streams. Plotting support is optional; the method
+and text-only example still use only the Python standard library.
+
 ## Run on GitHub
 
 Open **Actions → Paper example** and select a completed run. Its **Summary**
@@ -27,6 +40,13 @@ same output in its logs. The workflow runs on source pushes and also supports
 **Run workflow** for repository users with write access. Readers can view
 completed public runs without executing code locally; to start their own
 GitHub run, they can fork the repository and enable Actions.
+
+Each run also generates **paper-example-figures**, available under its
+**Artifacts** section and through the download link in the Summary. GitHub
+requires a signed-in account to download Actions artifacts. The inline Summary
+and README preview use the versioned image of the same verified hand-written
+example; the artifact contains the files generated during that run. Artifacts
+are retained for 90 days; the README preview remains part of the repository.
 
 ## Input conventions
 
