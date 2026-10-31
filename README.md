@@ -14,11 +14,25 @@ FPGA batch replay or measurement scripts, or previously generated results.
 gasp/       GASP algorithm, message/frame types, wire timing and method API
 settings/   Network, traffic, ASIL configuration and evaluation parameters
 hardware/   FPGA RTL, constraints and Vivado project construction
-examples/   One small hand-written method example
+examples/   Small hand-written API and manuscript examples
 tests/      Deterministic method and input-validation checks
 docs/       Method and experimental-setting descriptions
 scripts/    Distributed source-integrity check
 ```
+
+## Run the paper example
+
+```bash
+python3 -m examples.paper_example
+```
+
+This runs the manuscript's 12-message illustration and prints packing trials,
+both-hop reservations and the final schedule. The output is computed by GASP
+and checked against the illustration. Python 3.13 and its standard library
+are sufficient. See the [input and running guide](docs/PAPER_EXAMPLE.md).
+
+The same example runs on [GitHub Actions](https://github.com/gasp880/GASP/actions/workflows/paper-example.yml).
+Open a completed **Paper example** run to view its output in the Summary.
 
 ## Use the method
 
@@ -50,6 +64,7 @@ lists the input configuration options. These files describe the settings;
 they are not executable experiment drivers.
 
 - [Experimental setting and metric definitions](docs/EXPERIMENTAL_SETTINGS.md)
+- [Fixed paper method version](docs/PAPER_VERSION.md)
 - [FPGA implementation scope](docs/FPGA.md)
 - [References](docs/REFERENCES.md)
 - [Release contents and licensing status](docs/RELEASE.md)

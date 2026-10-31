@@ -1,6 +1,9 @@
 {
   "ASIL-D": [
     [
+      "ASIL-D"
+    ],
+    [
       "ASIL-C",
       "ASIL-A"
     ],
@@ -22,6 +25,9 @@
   ],
   "ASIL-C": [
     [
+      "ASIL-C"
+    ],
+    [
       "ASIL-B",
       "ASIL-A"
     ],
@@ -33,7 +39,15 @@
   ],
   "ASIL-B": [
     [
+      "ASIL-B"
+    ],
+    [
       "ASIL-A",
+      "ASIL-A"
+    ]
+  ],
+  "ASIL-A": [
+    [
       "ASIL-A"
     ]
   ]

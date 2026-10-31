@@ -3,14 +3,19 @@
   "scope": "GASP method implementation and experimental settings; full experimental scripts deferred",
   "files": [
     {
+      "path": ".github/workflows/paper-example.yml",
+      "bytes": 664,
+      "sha256": "7e8080c4b7acd6c80853ee4bdba9598847f79453ae9fa9fd8b252fb4ea9a2178"
+    },
+    {
       "path": ".gitignore",
       "bytes": 186,
       "sha256": "978c5681563dd07eae120af9a4996799b130e5c779460cfb2e0609582c8532f6"
     },
     {
       "path": "README.md",
-      "bytes": 2329,
-      "sha256": "4e2071607036ad38d8a2ee4e5a26806d415e4a11eec04b8e7a6e9dfb10f93133"
+      "bytes": 2957,
+      "sha256": "b6c2506ed52b306de1bc48df34806812e3ead9523215859ef0f5e738bafefaf2"
     },
     {
       "path": "docs/ALGORITHM.md",
@@ -19,13 +24,23 @@
     },
     {
       "path": "docs/EXPERIMENTAL_SETTINGS.md",
-      "bytes": 4517,
-      "sha256": "bd9d21b4cb975c4bcd2af79d38b06eb89f112c763880acba7c3d86578373ffa4"
+      "bytes": 5015,
+      "sha256": "5abbd97a37ed3466e60cb56bbc371f6642715f715904200c9390b54800749133"
     },
     {
       "path": "docs/FPGA.md",
-      "bytes": 1863,
-      "sha256": "3402a18cb8847448d64e11f6400d79ef6652741b699e4780786cc0bac150688d"
+      "bytes": 7869,
+      "sha256": "68bd724e0d54058e6133dd9bdec8f791683fdb77b4e3d260b2371e2df237c7a5"
+    },
+    {
+      "path": "docs/PAPER_EXAMPLE.md",
+      "bytes": 2306,
+      "sha256": "3f0fcac742255cb1ee4973bdfc7eb917277810deaf52a80b2e1bf30d1e17218b"
+    },
+    {
+      "path": "docs/PAPER_VERSION.md",
+      "bytes": 1508,
+      "sha256": "4a5133421e75f7552ececb605f991a993ba45306af139c81e499c3189169eb70"
     },
     {
       "path": "docs/REFERENCES.md",
@@ -34,8 +49,8 @@
     },
     {
       "path": "docs/RELEASE.md",
-      "bytes": 977,
-      "sha256": "9c23728e44d9a1cb01ceea36faa0809fd1588754da05b94054cd0e8bec2b9251"
+      "bytes": 1389,
+      "sha256": "1ff11ad0da2ec05d67e269c85f63170a00fc2df2a622418c2de997bd87ff7a1e"
     },
     {
       "path": "examples/__init__.py",
@@ -46,6 +61,11 @@
       "path": "examples/minimal.py",
       "bytes": 538,
       "sha256": "41d311b0eff4922a9867784a6d1472cc0be5d1f71dd22c37fdcaa11852ffc9ed"
+    },
+    {
+      "path": "examples/paper_example.py",
+      "bytes": 6907,
+      "sha256": "b881f0b4fcf287fcaf1e5785a8f9ca57bf5836f908a29b7637ae7192ee9ee34d"
     },
     {
       "path": "gasp/__init__.py",
@@ -149,8 +169,8 @@
     },
     {
       "path": "settings/asil_configurations.json",
-      "bytes": 429,
-      "sha256": "6ee82a2d92350a4316fb3d11e57780a104e1e3ac8e67b1609743e12b3285aa6e"
+      "bytes": 559,
+      "sha256": "4b1bd9562be93cbf9029026301454bcd93894d124d2cf910a47fb3462243703c"
     },
     {
       "path": "settings/experiments.json",

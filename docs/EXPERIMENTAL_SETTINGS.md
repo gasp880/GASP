@@ -20,6 +20,14 @@ The generator uses the General Motors class proportions reported in the referenc
 | MSOA time targets | Maximum-payload frame time divided by 4, 2, and 8 for initial packing, merging, and regrouping |
 | Non-critical start guard | 123.36 microseconds = 12336 ticks; no additional critical-to-critical guard |
 
+The complete per-parent sampling sets are in
+[`settings/asil_configurations.json`](../settings/asil_configurations.json):
+D has five options, C three, B two, and A one. Each requirement draws once,
+uniformly within its parent's set, including the unchanged singleton listed
+first. These are the critical-only configurations used in this study; QM
+messages are sampled separately. The JSON records the full sampling set,
+including the unchanged option, rather than only the decomposition branches.
+
 At 100 Mbps, each tick transports one bit. For a frame whose records total `B` bytes, the per-hop reservation is `8 * (20 + max(64, 22 + B))` ticks. The formula includes preamble/SFD, tagged MAC header, FCS, padding, and IFG. The deadline check requires both hop reservations to finish by the frame deadline. Domain-side CAN arbitration and forwarding are not simulated.
 
 ## Evaluation grids
